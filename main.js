@@ -13,8 +13,11 @@ function heartClick(){
     heart.addEventListener('click', e => {
       mimicServerCall()
         .then(res => {
-          if(res) {e.target.className = 'activated-heart';}
-          })
+          if(res) {
+            e.target.className = 'activated-heart';
+            e.target.textContent = FULL_HEART;
+          } // I'm assuming I don't have to "return" the response here.  
+        })
             .catch((res) => {
               const modalDiv = document.querySelector('#modal');
               modalDiv.classList.remove('hidden');
