@@ -13,10 +13,14 @@ function heartClick(){
     heart.addEventListener('click', e => {
       mimicServerCall()
         .then(res => {
-          if(res) {
-            e.target.className = 'activated-heart';
+          if(res && e.target.textContent === EMPTY_HEART) {
+            e.target.className += " activated-heart";
             e.target.textContent = FULL_HEART;
-          } // I'm assuming I don't have to "return" the response here.  
+          } 
+          else if(res && e.target.textContent === FULL_HEART) {
+            e.target.classList.remove('activated-heart');
+            e.target.textContent = EMPTY_HEART;
+          }
         })
             .catch((res) => {
               const modalDiv = document.querySelector('#modal');
@@ -27,6 +31,8 @@ function heartClick(){
     })
   })
 }
+
+// function heartClickHandler(event)
 
 document.addEventListener('DOMContentLoaded', init);
 //------------------------------------------------------------------------------
